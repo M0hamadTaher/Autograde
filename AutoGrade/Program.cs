@@ -3,19 +3,33 @@ using AutoGrade.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowReact",
+        policy =>
+        {
+            policy.AllowAnyOrigin()
+                  .AllowAnyHeader()
+                  .AllowAnyMethod();
+        });
+});
+
 builder.Services.AddControllers();
-builder.Services.AddOpenApi();           // Minimal API OpenAPI
+builder.Services.AddOpenApi();
 builder.Services.AddScoped<AIGradingService>();
 
 var app = builder.Build();
 
-// Map OpenAPI JSON
 if (app.Environment.IsDevelopment())
 {
-    app.MapOpenApi();                     // Generates https://localhost:7119/openapi
+    app.MapOpenApi();
 }
+
+app.UseCors("AllowReact");
 
 app.UseHttpsRedirection();
 app.UseAuthorization();
+
 app.MapControllers();
+
 app.Run();
