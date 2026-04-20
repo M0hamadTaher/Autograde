@@ -3,37 +3,35 @@ body {
   background: white;
   margin: 0;
 }
- .feedback-container {
+
+.feedback-container {
   width: 1024px;
   margin: auto;
   text-align: center;
   padding-top: 40px;
 }
 
-h2 {
+.title {
   font-size: 28px;
   color: #333;
 }
 
 .score-box {
-  background: #c0ffcb;
   padding: 20px;
   border-radius: 10px;
   width: 140px;
   font-size: 22px;
   font-weight: bold;
-  color: #1a3d7c;
-
-  margin-left: auto;  
+  margin-left: auto;
 }
 
-.score-box p {
+.score-label {
   font-size: 14px;
   margin: 0;
   color: #333;
 }
 
-label {
+.label {
   display: block;
   text-align: left;
   margin: 10px 0 4px 0;
@@ -41,7 +39,7 @@ label {
   color: #555;
 }
 
-textarea {
+.textarea {
   width: 100%;
   height: 130px;
   padding: 12px;
@@ -51,36 +49,25 @@ textarea {
   margin-bottom: 15px;
 }
 
-.blue-btn {
-  background: #1a73e8;
-  color: white;
-  border: none;
-  padding: 12px 20px;
-  width: 220px;
+.model-box {
+  background: #eaf3ff;
+  border-left: 5px solid #1a73e8;
   border-radius: 8px;
-  font-size: 16px;
-  cursor: pointer;
-  margin-top: 10px;
+  padding: 16px;
+  text-align: left;
+  margin-bottom: 15px;
 }
 
-.white-btn {
-  background: white;
+.model-title {
+  font-weight: bold;
   color: #1a73e8;
-  border: 2px solid #1a73e8;
-  padding: 12px 20px;
-  width: 220px;
-  border-radius: 8px;
-  font-size: 16px;
-  cursor: pointer;
-  margin-bottom: 10px;
+  margin-bottom: 8px;
 }
 
-.white-btn:hover {
-  background: #f0f6ff;
-}
-
-.blue-btn:hover {
-  background: #155fbd;
+.model-text {
+  color: #333;
+  font-size: 14px;
+  line-height: 1.5;
 }
 
 .suggestions-box {
@@ -101,4 +88,39 @@ textarea {
 
 .suggestion-item:last-child {
   border-bottom: none;
+}
+
+.btn-row {
+  margin-top: 15px;
+}
+
+.blue-btn {
+  background: #1a73e8;
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  width: 220px;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-left: 10px;
+}
+
+.white-btn {
+  background: white;
+  color: #1a73e8;
+  border: 2px solid #1a73e8;
+  padding: 12px 20px;
+  width: 220px;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.white-btn:hover {
+  background: #f0f6ff;
+}
+
+.blue-btn:hover {
+  background: #155fbd;
 }

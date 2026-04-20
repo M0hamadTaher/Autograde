@@ -5,12 +5,12 @@ export default function Feedback({ data, tryAgain }) {
 
   const scoreOutOf100 = data.score <= 10 ? data.score * 10 : data.score;
 
-   const scoreColor = scoreOutOf100 < 50 ? "#ffb3b3" : "#b7ffb7";
-  const textColor = scoreOutOf100 < 50 ? "#c90707ff" : "#15a315ff";
+  const scoreColor = scoreOutOf100 < 50 ? "#ffb3b3" : "#b7ffb7";
+  const textColor = scoreOutOf100 < 50 ? "#c90707" : "#15a315";
 
   return (
     <div className="feedback-container">
-      
+
       <h2 className="title">Feedback</h2>
 
       <div 
@@ -31,6 +31,14 @@ export default function Feedback({ data, tryAgain }) {
         className="textarea"
       ></textarea>
 
+      <label className="label">Model Answer</label>
+      <div className="model-box">
+        <p className="model-title">● Suggested Ideal Answer</p>
+        <p className="model-text">
+          {data.modelAnswer }
+        </p>
+      </div>
+
       <label className="label">Feedback Summary</label>
       <textarea 
         value={data.feedback}
@@ -45,7 +53,7 @@ export default function Feedback({ data, tryAgain }) {
             <li key={index} className="suggestion-item">{item}</li>
           ))
         ) : (
-          <li className="suggestion-item">No suggestions available.</li>
+          <li className="suggestion-item"></li>
         )}
       </ul>
 
