@@ -68,17 +68,17 @@ export default function SubmitEssay({ goBack, onSubmit }) {
         placeholder="Question"
         onChange={(e) => setForm({ ...form, question: e.target.value })}
       />
-
-      <textarea
-        placeholder="Student Response"
-        onChange={(e) => setForm({ ...form, response: e.target.value })}
-      ></textarea>
-
       <textarea
         placeholder="Model Answer"
         onChange={(e) => setForm({ ...form, modelAnswer: e.target.value })}
       ></textarea>
 
+      <textarea
+        placeholder="Student Answer"
+        onChange={(e) => setForm({ ...form, response: e.target.value })}
+      ></textarea>
+
+     
       <div className="btn-row">
         <button className="blue-btn" onClick={handleSubmit}>
           Submit

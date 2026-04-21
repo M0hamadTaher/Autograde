@@ -35,7 +35,7 @@ export default function Feedback({ data, tryAgain }) {
       <div className="model-box">
         <p className="model-title">● Suggested Ideal Answer</p>
         <p className="model-text">
-          {data.modelAnswer }
+          {data.modelAnswer}
         </p>
       </div>
 
@@ -61,11 +61,8 @@ export default function Feedback({ data, tryAgain }) {
         <button className="white-btn" onClick={tryAgain}>
           Try Again
         </button>
-
-        <button className="blue-btn">
-          View Detailed Report
-        </button>
       </div>
+
     </div>
   );
 }
