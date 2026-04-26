@@ -3,7 +3,23 @@ import "./Feedback.css";
 
 export default function Feedback({ data, tryAgain }) {
 
-  const scoreOutOf100 = data.score <= 10 ? data.score * 10 : data.score;
+  if (!data) {
+    return (
+      <div
+        style={{
+          textAlign: "center",
+          marginTop: "80px",
+          fontSize: "18px",
+          color: "gray"
+        }}
+      >
+        No feedback available yet
+      </div>
+    );
+  }
+
+  const scoreOutOf100 =
+    data.score <= 10 ? data.score * 10 : data.score;
 
   const scoreColor = scoreOutOf100 < 50 ? "#ffb3b3" : "#b7ffb7";
   const textColor = scoreOutOf100 < 50 ? "#c90707" : "#15a315";
@@ -13,7 +29,7 @@ export default function Feedback({ data, tryAgain }) {
 
       <h2 className="title">Feedback</h2>
 
-      <div 
+      <div
         className="score-box"
         style={{
           backgroundColor: scoreColor,
@@ -25,35 +41,35 @@ export default function Feedback({ data, tryAgain }) {
       </div>
 
       <label className="label">Student Answer</label>
-      <textarea 
-        value={data.response} 
-        readOnly 
+      <textarea
+        value={data.response || ""}
+        readOnly
         className="textarea"
-      ></textarea>
+      />
 
       <label className="label">Model Answer</label>
       <div className="model-box">
         <p className="model-title">● Suggested Ideal Answer</p>
         <p className="model-text">
-          {data.modelAnswer}
+          {data.modelAnswer || "No model answer"}
         </p>
       </div>
 
       <label className="label">Feedback Summary</label>
-      <textarea 
-        value={data.feedback}
+      <textarea
+        value={data.feedback || ""}
         readOnly
         className="textarea"
-      ></textarea>
+      />
 
-      <label className="label">Suggestions to Improve the Essay</label>
+      <label className="label">Suggestions</label>
       <ul className="suggestions-box">
-        {data.suggestions && data.suggestions.length > 0 ? (
+        {data.suggestions?.length > 0 ? (
           data.suggestions.map((item, index) => (
-            <li key={index} className="suggestion-item">{item}</li>
+            <li key={index}>{item}</li>
           ))
         ) : (
-          <li className="suggestion-item"></li>
+          <li>No suggestions</li>
         )}
       </ul>
 

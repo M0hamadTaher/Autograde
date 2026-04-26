@@ -14,7 +14,7 @@ export default function SubmitEssay({ goBack, onSubmit }) {
   const handleSubmit = async () => {
     try {
 
-      const response = await fetch("https://localhost:7119/api/Grading/grade", {
+      const response = await fetch("http://localhost:5217/api/Grading/grade", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
@@ -22,7 +22,7 @@ export default function SubmitEssay({ goBack, onSubmit }) {
         body: JSON.stringify({
           question: form.question,
           studentAnswer: form.response,
-          modelAnswer: form.modelAnswer  
+          modelAnswer: form.modelAnswer
         })
       });
 
@@ -32,16 +32,27 @@ export default function SubmitEssay({ goBack, onSubmit }) {
 
       const result = await response.json();
 
+      console.log("API RESULT:", result); 
+
+      if (!result || result.grade == null) {
+        onSubmit(null);
+        return;
+      }
+
       onSubmit({
         ...form,
         score: result.grade,
         feedback: result.feedback,
         suggestions: result.suggestions || [],
-        modelAnswer: form.modelAnswer 
+        modelAnswer: form.modelAnswer
       });
 
     } catch (error) {
       console.error("API error:", error);
+
+  
+      onSubmit(null);
+
       alert("Error connecting to API");
     }
   };
@@ -68,17 +79,17 @@ export default function SubmitEssay({ goBack, onSubmit }) {
         placeholder="Question"
         onChange={(e) => setForm({ ...form, question: e.target.value })}
       />
+
       <textarea
         placeholder="Model Answer"
         onChange={(e) => setForm({ ...form, modelAnswer: e.target.value })}
-      ></textarea>
+      />
 
       <textarea
         placeholder="Student Answer"
         onChange={(e) => setForm({ ...form, response: e.target.value })}
-      ></textarea>
+      />
 
-     
       <div className="btn-row">
         <button className="blue-btn" onClick={handleSubmit}>
           Submit
