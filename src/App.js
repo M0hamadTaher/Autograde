@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import Home from "./pages/Home";
 import SubmitEssay from "./pages/SubmitEssay";
 import Feedback from "./pages/Feedback";
 import Login from "./pages/Login";
@@ -28,30 +27,23 @@ function App() {
           setPage={setPage}
           onLogin={(userData) => {
             setUser(userData);
-            setPage("home");
+
+            if (userData.role === "teacher") {
+              setPage("submit");
+            } else {
+              setPage("feedback");
+            }
           }}
         />
       )}
 
-      {page === "signup" && (
-        <SignUp setPage={setPage} />
-      )}
+      {page === "signup" && <SignUp setPage={setPage} />}
 
-      {page === "forgot" && (
-        <ForgotPassword setPage={setPage} />
-      )}
-
-      {page === "home" && (
-        <Home
-          user={user}
-          goToSubmit={() => setPage("submit")}
-          goToFeedback={() => setPage("feedback")}
-        />
-      )}
+      {page === "forgot" && <ForgotPassword setPage={setPage} />}
 
       {page === "submit" && user?.role === "teacher" && (
         <SubmitEssay
-          goBack={() => setPage("home")}
+          goBack={() => setPage("login")}
           onSubmit={(data) => {
             setFeedbackData(data);
             setPage("feedback");
@@ -62,7 +54,13 @@ function App() {
       {page === "feedback" && (
         <Feedback
           data={feedbackData}
-          tryAgain={() => setPage("home")}
+          tryAgain={() => {
+            if (user?.role === "teacher") {
+              setPage("submit");
+            } else {
+              setPage("login");
+            }
+          }}
         />
       )}
 

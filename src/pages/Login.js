@@ -105,6 +105,13 @@ export default function Login({ onLogin, setPage }) {
           </span>
         </p>
 
+        
+<div className="login-footer">
+  <p className="copyright">
+    © {new Date().getFullYear()} AutoGrade. All rights reserved.
+  </p>
+</div>
+
       </div>
     </div>
   );

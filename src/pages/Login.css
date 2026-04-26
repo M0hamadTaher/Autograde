@@ -116,3 +116,23 @@
 .dark .role-card.active {
   background: #2d3a5a;
 }
+
+.login-box {
+  position: relative;
+  padding-bottom: 60px; 
+}
+
+.login-footer {
+  position: absolute;
+  bottom: 15px;
+  left: 0;
+  width: 100%;
+  text-align: center;
+}
+
+.copyright {
+  font-size: 12px;
+  color: #888;
+  margin: 0;
+  letter-spacing: 0.3px;
+}
